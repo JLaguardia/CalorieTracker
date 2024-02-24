@@ -13,4 +13,5 @@ dependencies {
     implementation(project(Modules.core))
     implementation(project(Modules.onboardingDomain))
     implementation(project(Modules.coreUI))
+    debugImplementation("androidx.compose.ui:ui-tooling:1.6.2")
 }
