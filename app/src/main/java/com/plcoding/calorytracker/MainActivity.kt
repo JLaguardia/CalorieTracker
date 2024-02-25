@@ -14,8 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import com.plcoding.calorytracker.navigation.navigate
 import com.prismsoft.calorytracker.ui.theme.CaloryTrackerTheme
 import com.prismsoft.core.navigation.Route
+import com.prismsoft.onboarding_presentation.gender.GenderScreen
 import com.prismsoft.onboarding_presentation.welcome.WelcomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,28 +31,41 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(Route.AGE) {
-                        WelcomeScreen { event ->
-                            navCtrl.navigate(event.route)
-                        }
+                        Text(text = "AGE")
                     }
 
                     composable(Route.GENDER) {
+                        GenderScreen { event ->
+                            navCtrl.navigate(event)
+                        }
                     }
+
                     composable(Route.HEIGHT) {
+                        Text(text = "HEIGHT")
                     }
+
                     composable(Route.WEIGHT) {
+                        Text(text = "WEIGHT")
                     }
+
                     composable(Route.NUTRIENT_GOALS) {
+                        Text(text = "NUTRIENT_GOALS")
                     }
+
                     composable(Route.ACTIVITY) {
+                        Text(text = "ACTIVITY")
                     }
+
                     composable(Route.GOAL) {
+                        Text(text = "GOAL")
                     }
 
 
                     composable(Route.TRACKER_OVERVIEW) {
+                        Text(text = "TRACKER_OVERVIEW")
                     }
                     composable(Route.SEARCH) {
+                        Text(text = "SEARCH")
                     }
                 }
             }
