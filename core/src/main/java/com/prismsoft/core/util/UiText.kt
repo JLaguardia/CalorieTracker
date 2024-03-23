@@ -1,0 +1,13 @@
+package com.prismsoft.core.util
+
+import android.content.Context
+
+sealed class UiText {
+    data class DynamicString(val uiText: String): UiText()
+    data class StringResource(val resId: Int): UiText()
+
+    fun asString(context: Context): String = when (this){
+        is DynamicString -> uiText
+        is StringResource -> context.getString(resId)
+    }
+}

@@ -3,10 +3,15 @@ package com.prismsoft.calorytracker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.plcoding.calorytracker.navigation.navigate
 import com.prismsoft.calorytracker.ui.theme.CaloryTrackerTheme
 import com.prismsoft.core.navigation.Route
+import com.prismsoft.onboarding_presentation.age.AgeScreen
 import com.prismsoft.onboarding_presentation.gender.GenderScreen
 import com.prismsoft.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,49 +31,63 @@ class MainActivity : ComponentActivity() {
         setContent {
             CaloryTrackerTheme {
                 val navCtrl = rememberNavController()
-                NavHost(navController = navCtrl, startDestination = Route.WELCOME) {
-                    composable(Route.WELCOME) {
-                        WelcomeScreen(onNavigate = navCtrl::navigate)
-                    }
+                val scaffoldState = rememberScaffoldState()
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    scaffoldState = scaffoldState
+                ) {
+                    NavHost(
+                        modifier = Modifier.padding(it),
+                        navController = navCtrl,
+                        startDestination = Route.WELCOME
+                    ) {
+                        composable(Route.WELCOME) {
+                            WelcomeScreen(onNavigate = navCtrl::navigate)
+                        }
 
-                    composable(Route.AGE) {
-                        Text(text = "AGE")
-                    }
+                        composable(Route.AGE) {
+                            AgeScreen(
+                                onNavigate = navCtrl::navigate,
+                                scaffoldState = scaffoldState
+                            )
+                        }
 
-                    composable(Route.GENDER) {
-                        GenderScreen { event ->
-                            navCtrl.navigate(event)
+                        composable(Route.GENDER) {
+                            GenderScreen { event ->
+                                navCtrl.navigate(event)
+                            }
+                        }
+
+                        composable(Route.HEIGHT) {
+                            Text(text = "HEIGHT")
+                        }
+
+                        composable(Route.WEIGHT) {
+                            Text(text = "WEIGHT")
+                        }
+
+                        composable(Route.NUTRIENT_GOALS) {
+                            Text(text = "NUTRIENT_GOALS")
+                        }
+
+                        composable(Route.ACTIVITY) {
+                            Text(text = "ACTIVITY")
+                        }
+
+                        composable(Route.GOAL) {
+                            Text(text = "GOAL")
+                        }
+
+
+                        composable(Route.TRACKER_OVERVIEW) {
+                            Text(text = "TRACKER_OVERVIEW")
+                        }
+                        composable(Route.SEARCH) {
+                            Text(text = "SEARCH")
                         }
                     }
-
-                    composable(Route.HEIGHT) {
-                        Text(text = "HEIGHT")
-                    }
-
-                    composable(Route.WEIGHT) {
-                        Text(text = "WEIGHT")
-                    }
-
-                    composable(Route.NUTRIENT_GOALS) {
-                        Text(text = "NUTRIENT_GOALS")
-                    }
-
-                    composable(Route.ACTIVITY) {
-                        Text(text = "ACTIVITY")
-                    }
-
-                    composable(Route.GOAL) {
-                        Text(text = "GOAL")
-                    }
-
-
-                    composable(Route.TRACKER_OVERVIEW) {
-                        Text(text = "TRACKER_OVERVIEW")
-                    }
-                    composable(Route.SEARCH) {
-                        Text(text = "SEARCH")
-                    }
                 }
+
             }
         }
     }
