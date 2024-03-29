@@ -19,8 +19,12 @@ import androidx.navigation.compose.rememberNavController
 import com.plcoding.calorytracker.navigation.navigate
 import com.prismsoft.calorytracker.ui.theme.CaloryTrackerTheme
 import com.prismsoft.core.navigation.Route
+import com.prismsoft.onboarding_presentation.activity.ActivityLevelScreen
 import com.prismsoft.onboarding_presentation.age.AgeScreen
 import com.prismsoft.onboarding_presentation.gender.GenderScreen
+import com.prismsoft.onboarding_presentation.goal.GoalScreen
+import com.prismsoft.onboarding_presentation.height.HeightScreen
+import com.prismsoft.onboarding_presentation.weight.WeightScreen
 import com.prismsoft.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,24 +63,32 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Route.HEIGHT) {
-                            Text(text = "HEIGHT")
+                            HeightScreen(
+                                onNavigate = navCtrl::navigate,
+                                scaffoldState = scaffoldState
+                            )
                         }
 
                         composable(Route.WEIGHT) {
-                            Text(text = "WEIGHT")
+                            WeightScreen(
+                                onNavigate = navCtrl::navigate,
+                                scaffoldState = scaffoldState
+                            )
                         }
+
+                        composable(Route.ACTIVITY) {
+                            ActivityLevelScreen(onNavigate = navCtrl::navigate)
+                        }
+
+                        composable(Route.GOAL) {
+                            GoalScreen(onNavigate = navCtrl::navigate)
+                        }
+
 
                         composable(Route.NUTRIENT_GOALS) {
                             Text(text = "NUTRIENT_GOALS")
                         }
 
-                        composable(Route.ACTIVITY) {
-                            Text(text = "ACTIVITY")
-                        }
-
-                        composable(Route.GOAL) {
-                            Text(text = "GOAL")
-                        }
 
 
                         composable(Route.TRACKER_OVERVIEW) {
