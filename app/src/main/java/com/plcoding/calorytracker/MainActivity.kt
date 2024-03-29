@@ -24,6 +24,7 @@ import com.prismsoft.onboarding_presentation.age.AgeScreen
 import com.prismsoft.onboarding_presentation.gender.GenderScreen
 import com.prismsoft.onboarding_presentation.goal.GoalScreen
 import com.prismsoft.onboarding_presentation.height.HeightScreen
+import com.prismsoft.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.prismsoft.onboarding_presentation.weight.WeightScreen
 import com.prismsoft.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,9 +85,11 @@ class MainActivity : ComponentActivity() {
                             GoalScreen(onNavigate = navCtrl::navigate)
                         }
 
-
                         composable(Route.NUTRIENT_GOALS) {
-                            Text(text = "NUTRIENT_GOALS")
+                            NutrientGoalScreen(
+                                onNavigate = navCtrl::navigate,
+                                scaffoldState = scaffoldState
+                            )
                         }
 
 
