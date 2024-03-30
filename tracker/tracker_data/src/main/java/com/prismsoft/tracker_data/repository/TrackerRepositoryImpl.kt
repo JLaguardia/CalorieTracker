@@ -41,7 +41,7 @@ class TrackerRepositoryImpl @Inject constructor(
         trackerDao.deleteTrackedFood(trackableFood.toTrackedFoodEntity())
     }
 
-    override suspend fun getFoodsForDate(date: LocalDate): Flow<List<TrackedFood>> {
+    override fun getFoodsForDate(date: LocalDate): Flow<List<TrackedFood>> {
         return trackerDao.getFoodsForDate(date.monthValue, date.dayOfMonth, date.year)
             .map { entities -> entities.map { it.toTrackedFood() } }
     }
