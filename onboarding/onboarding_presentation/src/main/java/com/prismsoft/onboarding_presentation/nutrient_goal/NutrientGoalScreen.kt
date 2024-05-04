@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.prismsoft.core.R
 import com.prismsoft.core.util.UiEvent
@@ -102,5 +103,13 @@ fun NutrientGoalEntry(
                 Alignment.BottomEnd
             )
         )
+    }
+}
+
+@Preview
+@Composable
+private fun NutrientGoalPreview() {
+    NutrientGoalEntry(state = NutrientGoalState()) {
+
     }
 }

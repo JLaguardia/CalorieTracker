@@ -81,4 +81,14 @@ class DefaultPreferences(
         carbRatio = sharedPrefs.getFloat(Preferences.KEY_CARB_RATIO, 0f),
         fatRatio = sharedPrefs.getFloat(Preferences.KEY_FAT_RATIO, 0f),
     )
+
+    override fun saveShouldShowOnboarding(shouldShow: Boolean) {
+        sharedPrefs.edit {
+            putBoolean(Preferences.KEY_SHOULD_SHOW_ONBOARDING, shouldShow)
+        }
+    }
+
+    override fun loadShouldShowOnboarding(): Boolean =
+        sharedPrefs.getBoolean(Preferences.KEY_SHOULD_SHOW_ONBOARDING, true)
+
 }

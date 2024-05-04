@@ -1,4 +1,4 @@
-package com.prismsoft.calorytracker.ui.theme
+package com.prismsoft.core_ui
 
 import androidx.compose.ui.graphics.Color
 

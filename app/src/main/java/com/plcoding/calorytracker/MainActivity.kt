@@ -27,6 +27,7 @@ import com.prismsoft.onboarding_presentation.height.HeightScreen
 import com.prismsoft.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.prismsoft.onboarding_presentation.weight.WeightScreen
 import com.prismsoft.onboarding_presentation.welcome.WelcomeScreen
+import com.prismsoft.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -92,10 +93,8 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-
-
                         composable(Route.TRACKER_OVERVIEW) {
-                            Text(text = "TRACKER_OVERVIEW")
+                            TrackerOverviewScreen(onNavigate = navCtrl::navigate)
                         }
                         composable(Route.SEARCH) {
                             Text(text = "SEARCH")

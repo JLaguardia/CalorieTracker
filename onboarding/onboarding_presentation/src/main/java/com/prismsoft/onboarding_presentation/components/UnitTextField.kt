@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.prismsoft.core_ui.LocalSpacing
 
@@ -50,5 +51,18 @@ fun UnitTextField(
             modifier = Modifier
                 .alignBy(LastBaseline) // horizontally aligns composable at bottom bound of parent
         )
+    }
+}
+
+@Preview(
+    showSystemUi = true
+)
+@Composable
+private fun UnitTextFieldPreview() {
+    UnitTextField(
+        value = "10",
+        unit = "kg"
+    ) {
+
     }
 }
