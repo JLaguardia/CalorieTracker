@@ -32,6 +32,7 @@ class TrackerOverviewViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
+        refreshFoods()
         preferences.saveShouldShowOnboarding(false)
     }
 
@@ -71,10 +72,12 @@ class TrackerOverviewViewModel @Inject constructor(
 
             TrackerOverviewEvent.onNextDayTap -> {
                 state = state.copy(date = state.date.plusDays(1))
+                refreshFoods()
             }
 
             TrackerOverviewEvent.onPreviousDayTap -> {
                 state = state.copy(date = state.date.minusDays(1))
+                refreshFoods()
             }
         }
     }

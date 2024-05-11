@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -31,6 +32,15 @@ fun TrackerOverviewScreen(
     val state = viewModel.state
     val context = LocalContext.current
 
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when(event){
+                is UiEvent.Navigate -> onNavigate(event)
+                else -> Unit
+            }
+        }
+    }
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -43,7 +53,9 @@ fun TrackerOverviewScreen(
                 date = state.date,
                 onPreviousDayClick = { viewModel.onEvent(TrackerOverviewEvent.onPreviousDayTap) },
                 onNextDayClick = { viewModel.onEvent(TrackerOverviewEvent.onNextDayTap) },
-                modifier = Modifier.fillMaxWidth().padding(spacing.spaceMedium)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceMedium)
             )
             Spacer(Modifier.height(spacing.spaceMedium))
         }

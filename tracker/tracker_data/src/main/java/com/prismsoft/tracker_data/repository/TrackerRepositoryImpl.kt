@@ -28,7 +28,7 @@ class TrackerRepositoryImpl @Inject constructor(
             pageSize = pageSize
         )
         Result.success(dto.products.mapNotNull { it.toTrackableFood() })
-    } catch (e: Exception){
+    } catch (e: Exception) {
         e.printStackTrace()
         Result.failure(e)
     }
@@ -42,7 +42,12 @@ class TrackerRepositoryImpl @Inject constructor(
     }
 
     override fun getFoodsForDate(date: LocalDate): Flow<List<TrackedFood>> {
-        return trackerDao.getFoodsForDate(date.monthValue, date.dayOfMonth, date.year)
+        return trackerDao
+            .getFoodsForDate(
+                month = date.monthValue,
+                dayOfMonth = date.dayOfMonth,
+                year = date.year
+            )
             .map { entities -> entities.map { it.toTrackedFood() } }
     }
 

@@ -13,11 +13,14 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.plcoding.calorytracker.navigation.navigate
 import com.prismsoft.calorytracker.ui.theme.CaloryTrackerTheme
+import com.prismsoft.core.domain.preferences.Preferences
 import com.prismsoft.core.navigation.Route
 import com.prismsoft.onboarding_presentation.activity.ActivityLevelScreen
 import com.prismsoft.onboarding_presentation.age.AgeScreen
@@ -27,13 +30,20 @@ import com.prismsoft.onboarding_presentation.height.HeightScreen
 import com.prismsoft.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.prismsoft.onboarding_presentation.weight.WeightScreen
 import com.prismsoft.onboarding_presentation.welcome.WelcomeScreen
+import com.prismsoft.tracker_presentation.search.SearchScreen
 import com.prismsoft.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var preferences: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val shouldShowOnboarding = preferences.loadShouldShowOnboarding()
         setContent {
             CaloryTrackerTheme {
                 val navCtrl = rememberNavController()
@@ -45,7 +55,11 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         modifier = Modifier.padding(it),
                         navController = navCtrl,
-                        startDestination = Route.WELCOME
+                        startDestination = if(shouldShowOnboarding) {
+                            Route.WELCOME
+                        } else {
+                            Route.TRACKER_OVERVIEW
+                        }
                     ) {
                         composable(Route.WELCOME) {
                             WelcomeScreen(onNavigate = navCtrl::navigate)
@@ -96,8 +110,35 @@ class MainActivity : ComponentActivity() {
                         composable(Route.TRACKER_OVERVIEW) {
                             TrackerOverviewScreen(onNavigate = navCtrl::navigate)
                         }
-                        composable(Route.SEARCH) {
-                            Text(text = "SEARCH")
+
+                        composable(
+                            route = Route.SEARCH + "/{mealName}/{dayOfMonth}/{month}/{year}",
+                            arguments = listOf(
+                                navArgument("mealName") {
+                                    type = NavType.StringType
+                                },
+                                navArgument("dayOfMonth") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("month") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("year") {
+                                    type = NavType.IntType
+                                }
+                            )
+                        ) { entry ->
+                            val mealName = entry.arguments?.getString("mealName")!!
+                            val dayOfMonth = entry.arguments?.getInt("dayOfMonth")!!
+                            val month = entry.arguments?.getInt("month")!!
+                            val year = entry.arguments?.getInt("year")!!
+                            SearchScreen(
+                                scaffoldState = scaffoldState,
+                                mealName = mealName,
+                                dayOfMonth = dayOfMonth,
+                                month = month,
+                                year = year,
+                                onNavigateUp = { navCtrl.navigateUp() })
                         }
                     }
                 }

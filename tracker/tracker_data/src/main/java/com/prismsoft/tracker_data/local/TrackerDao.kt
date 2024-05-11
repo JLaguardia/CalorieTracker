@@ -19,9 +19,9 @@ interface TrackerDao {
     @Query("""
         SELECT * 
         FROM TrackedFoodEntity 
-        WHERE dayOfMonth = :day 
+        WHERE dayOfMonth = :dayOfMonth 
             AND month = :month
             AND year = :year
     """)
-    fun getFoodsForDate(day: Int, month: Int, year: Int): Flow<List<TrackedFoodEntity>>
+    fun getFoodsForDate(month: Int, dayOfMonth: Int, year: Int): Flow<List<TrackedFoodEntity>>
 }

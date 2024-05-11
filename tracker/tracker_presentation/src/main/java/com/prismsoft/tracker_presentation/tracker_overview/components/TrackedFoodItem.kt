@@ -159,5 +159,5 @@ private fun TrackedFoodItemPreview() {
             calories = 440,
             amount = 1
         ),
-        onDeleteClick = { /*TODO*/ })
+        onDeleteClick = {  })
 }
