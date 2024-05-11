@@ -68,7 +68,7 @@ class DefaultPreferences(
     override fun loadUserInfo(): UserInfo = UserInfo(
         gender = Gender.fromString(sharedPrefs.getString(Preferences.KEY_GENDER, "")),
         age = sharedPrefs.getInt(Preferences.KEY_AGE, 0),
-        weight = sharedPrefs.getInt(Preferences.KEY_WEIGHT, 0),
+        weight = sharedPrefs.getFloat(Preferences.KEY_WEIGHT, 0f),
         height = sharedPrefs.getInt(Preferences.KEY_HEIGHT, 0),
         activityLevel = ActivityLevel.fromString(
             sharedPrefs.getString(
