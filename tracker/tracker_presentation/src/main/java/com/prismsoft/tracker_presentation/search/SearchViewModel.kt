@@ -39,11 +39,11 @@ class SearchViewModel @Inject constructor(
                 state = state.copy(query = event.query)
             }
 
-            is SearchEvent.OnAmountForfoodChange -> {
+            is SearchEvent.OnAmountForFoodChange -> {
                 state = state.copy(
                     trackableFoods = state.trackableFoods.map {
                         if (it.food == event.food) {
-                            it.copy(amount = filterOutDigits(event.amount.toString()))
+                            it.copy(amount = filterOutDigits(event.amount))
                         } else {
                             it
                         }

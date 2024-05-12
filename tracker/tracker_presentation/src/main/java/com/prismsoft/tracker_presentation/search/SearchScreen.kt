@@ -92,9 +92,9 @@ fun SearchScreen(
                     onTap = { viewModel.onEvent(SearchEvent.OnToggleTrackableFood(item.food)) },
                     onAmountChanged = {
                         viewModel.onEvent(
-                            SearchEvent.OnAmountForfoodChange(
+                            SearchEvent.OnAmountForFoodChange(
                                 item.food,
-                                it.toInt()
+                                it
                             )
                         )
                     },

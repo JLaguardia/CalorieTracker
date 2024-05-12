@@ -1,6 +1,7 @@
 package com.prismsoft.calorytracker
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -133,6 +134,10 @@ class MainActivity : ComponentActivity() {
                             val dayOfMonth = entry.arguments?.getInt("dayOfMonth")!!
                             val month = entry.arguments?.getInt("month")!!
                             val year = entry.arguments?.getInt("year")!!
+                            Log.d(
+                                "JAMES::",
+                                "search mealname: $mealName "
+                            )
                             SearchScreen(
                                 scaffoldState = scaffoldState,
                                 mealName = mealName,

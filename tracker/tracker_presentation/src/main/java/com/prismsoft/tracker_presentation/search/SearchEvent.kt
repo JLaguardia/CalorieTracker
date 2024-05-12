@@ -8,9 +8,9 @@ sealed class SearchEvent {
     object OnSearch : SearchEvent()
     data class OnQueryChanged(val query: String) : SearchEvent()
     data class OnToggleTrackableFood(val food: TrackableFood) : SearchEvent()
-    data class OnAmountForfoodChange(
+    data class OnAmountForFoodChange(
         val food: TrackableFood,
-        val amount: Int
+        val amount: String
     ) : SearchEvent()
 
     data class OnTrackFoodTap(
