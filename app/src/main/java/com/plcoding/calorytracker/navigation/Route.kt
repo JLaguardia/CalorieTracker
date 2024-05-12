@@ -1,4 +1,4 @@
-package com.prismsoft.core.navigation
+package com.plcoding.calorytracker.navigation
 
 object Route {
     // onboarding

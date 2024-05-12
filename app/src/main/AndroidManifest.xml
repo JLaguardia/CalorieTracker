@@ -3,7 +3,6 @@
     package="com.prismsoft.calorytracker">
 
     <application
-        android:allowBackup="true"
         android:name="com.plcoding.calorytracker.CaloryTrackerApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

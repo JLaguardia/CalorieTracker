@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prismsoft.core.domain.preferences.Preferences
 import com.prismsoft.core.domain.use_case.FilterOutDigits
-import com.prismsoft.core.navigation.Route
 import com.prismsoft.core.util.UiEvent
 import com.prismsoft.onboarding_domain.use_case.ValidateNutrients
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -54,7 +53,7 @@ class NutrientGoalViewModel @Inject constructor(
                         preferences.saveCarbRatio(result.carbsRatio)
                         preferences.saveProteinRatio(result.proteinRatio)
                         preferences.saveFatRatio(result.fatRatio)
-                        viewModelScope.launch { _uiEvent.send(UiEvent.Navigate(Route.TRACKER_OVERVIEW)) }
+                        viewModelScope.launch { _uiEvent.send(UiEvent.Success) }
                     }
 
                     is ValidateNutrients.Result.Error -> {

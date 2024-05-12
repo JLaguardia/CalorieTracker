@@ -26,13 +26,13 @@ import com.prismsoft.onboarding_presentation.components.UnitTextField
 fun WeightScreen(
     viewModel: WeightViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState,
-    onNavigate: (UiEvent.Navigate) -> Unit
+    onNextTap: () -> Unit
 ) {
     val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                UiEvent.Success -> onNextTap()
                 is UiEvent.ShowSnackBar ->
                     scaffoldState.snackbarHostState.showSnackbar(
                         event.message.asString(

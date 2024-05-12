@@ -17,14 +17,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prismsoft.core.R
-import com.prismsoft.core.navigation.Route
 import com.prismsoft.core.util.UiEvent
 import com.prismsoft.core_ui.LocalSpacing
 import com.prismsoft.onboarding_presentation.components.ActionButton
 
 @Composable
 fun WelcomeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit
+    onNextTap: () -> Unit
 ) {
     val spacing = LocalSpacing.current
     Column(
@@ -45,7 +44,7 @@ fun WelcomeScreen(
             text = stringResource(id = R.string.lets_go),
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
-            onNavigate(UiEvent.Navigate(Route.GENDER))
+            onNextTap()
         }
     }
 }

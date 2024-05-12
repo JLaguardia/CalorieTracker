@@ -45,7 +45,7 @@ fun NutrientsHeader(
     )
 
     Column(
-        Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clip(
                 RoundedCornerShape(

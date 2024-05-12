@@ -30,12 +30,12 @@ import com.prismsoft.onboarding_presentation.components.SelectableButton
 @Composable
 fun GenderScreen(
     viewModel: GenderViewModel = hiltViewModel(),
-    onNavigate: (UiEvent.Navigate) -> Unit
+    onNextTap: () -> Unit
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                UiEvent.Success -> onNextTap()
                 else -> Unit
             }
         }

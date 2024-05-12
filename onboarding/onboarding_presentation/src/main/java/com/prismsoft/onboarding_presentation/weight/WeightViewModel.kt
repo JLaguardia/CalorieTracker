@@ -9,7 +9,6 @@ import com.prismsoft.core.domain.preferences.Preferences
 import com.prismsoft.core.util.UiEvent
 import com.prismsoft.core.util.UiText
 import com.prismsoft.core.R
-import com.prismsoft.core.navigation.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -36,7 +35,7 @@ class WeightViewModel @Inject constructor(
         viewModelScope.launch {
             weight.toFloatOrNull()?.also { weightNumber ->
                 preferences.saveWeight(weightNumber)
-                _uiEvent.send(UiEvent.Navigate(Route.ACTIVITY))
+                _uiEvent.send(UiEvent.Success)
             } ?: run {
                 _uiEvent.send(
                     UiEvent.ShowSnackBar(UiText.StringResource(R.string.error_weight_cant_be_empty))

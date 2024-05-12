@@ -10,7 +10,6 @@ import com.prismsoft.core.domain.use_case.FilterOutDigits
 import com.prismsoft.core.util.UiEvent
 import com.prismsoft.core.util.UiText
 import com.prismsoft.core.R
-import com.prismsoft.core.navigation.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -45,7 +44,7 @@ class HeightViewModel @Inject constructor(
             }
 
             preferences.saveHeight(heightNumber)
-            _uiEvent.send(UiEvent.Navigate(Route.WEIGHT))
+            _uiEvent.send(UiEvent.Success)
         }
     }
 }
