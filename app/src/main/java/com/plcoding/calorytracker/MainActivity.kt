@@ -134,10 +134,6 @@ class MainActivity : ComponentActivity() {
                             val dayOfMonth = entry.arguments?.getInt("dayOfMonth")!!
                             val month = entry.arguments?.getInt("month")!!
                             val year = entry.arguments?.getInt("year")!!
-                            Log.d(
-                                "JAMES::",
-                                "search mealname: $mealName "
-                            )
                             SearchScreen(
                                 scaffoldState = scaffoldState,
                                 mealName = mealName,
